@@ -132,10 +132,10 @@ public class PDFAnonymous {
 	private void parseCmdLine(String[] args) {
 		options=new Options();
 		options.addOption("help", false, "Aide sur la ligne de commande");
-		options.addOption("strict", false, "Respect stricte de la case des tokens a remplacer.");
-		options.addOption("ts", true, "Utilisation d'une chaine de tokens pour le remplacement au format \"t1:t2#t3:t4#tn:tm\", cette chaine doit être delimite par des \"\" et est prioritaire sur la prise en charge du fichier de tokens...");
-		options.addOption("of", true, "Chemin complet du fichier de sortie au format ASCII...");
-		options.addOption("pdf", true, "Chemin complet du fichier du PDF en entree...");
+		options.addOption("strict", false, "Respect stricte de la casse des tokens a remplacer.");
+		options.addOption("ts", true, "Utilisation d'une chaine de tokens pour le remplacement  : au format \"t1:t2#t3:t4#tn:tm\", cette chaine doit etre delimite par des \"\" et est prioritaire sur la prise en charge du fichier de tokens...");
+		options.addOption("of", true, "Chemin complet du fichier de sortie au format ASCII UTF-8...");
+		options.addOption("pdf", true, "Chemin complet du fichier PDF en entree...");
 		options.addOption("tf", true, "Chemin complet du fichier des tokens de remplacement (voir format attendu)...");
 		
 		try
@@ -214,23 +214,23 @@ public class PDFAnonymous {
 		System.out.println("\r\nAide detaillee\r\n"
 				+ "--------------\r\n"
 				+ "L'option -pdf <PdfInputFile> est obligatoire \n\r\n\r"
-				+ "L'option -of <ExtractDestFile> peut être omise, dans ce cas l'extraction se fait directement sur la console.\r\n\n\r"
-				+ "L'option -ts permet de définir une liste de token directement sur la ligne de commande\r\n"
-				+ "le format de cette cahine de token doit respecter le syntaxe suivante :\r\n"
-				+ "tokenARemplacer:TokenDeRemplacement (separateur : obligatoire)\r\n"
+				+ "L'option -of <ExtractDestFile> peut etre omise, dans ce cas l'extraction se fait directement sur la console.\r\n\n\r"
+				+ "L'option -ts permet de définir une liste de tokens directement sur la ligne de commande\r\n"
+				+ "le format de cette chaine de tokens doit respecter le syntaxe suivante :\r\n"
+				+ "TokenARemplacer:TokenDeRemplacement (separateur : obligatoire)\r\n"
 				+ "chaque couple de tokens doit etre separe par un caractere #\r\n"
 				+ "la liste des tokens doit etre entoure des caracteres double quotes \"\r\n"
 				+ "Exemple : \"2019:AAAA#Hello:Greating#today:tomorrow\"\r\n"
-				+ "Si l'option -ts n'est pas presente, il est obligatoire d'utiliser un fichier de token\r\n\r\n"
+				+ "NB: Si l'option -ts n'est pas presente, il est obligatoire d'utiliser un fichier de tokens avec l'option -tf\r\n\r\n"
 				+ "L'option -tf <nomDuFichier>\r\n"
 				+ "Ce fichier doit comporter la liste des tokens (un couple par ligne) separe par un retour chariot\r\n"
 				+ "exemple de contenu : \r\n"
 				+ "2019:AAAA\r\n"
 				+ "Hello:Greating\r\n"
 				+ "today:tomorrow\r\n"
-				+ "Le fichier doit etre enregistre au format ASCII, aucune extension imposee\r\n\r\n"
+				+ "Le fichier doit etre enregistre au format ASCII UTF-8, aucune extension imposee\r\n\r\n"
 				+ "L'option -strict est optionnelle, elle permet de forcer la correspondance stricte sur le token a remplacer\r\n"
-				+ "si l'option n'est pas presente, l'application ne prend pas en compte la case et remplace tous les tokens correspondant\r\n"
+				+ "si l'option n'est pas presente, l'application ne prend pas en compte la casse et remplace tous les tokens correspondant\r\n"
 				+ "");
 		
 	}
@@ -306,7 +306,7 @@ public class PDFAnonymous {
 		 System.out.println("*  PDFAnonymous  *");
 		 System.out.println("******************");
 		 HelpFormatter formatter = new HelpFormatter();
-		 formatter.printHelp( "PDFAnonymous", options );
+		 formatter.printHelp( "PDFAnonymous", options,true );
 		 System.out.println("Tondeur Herve (2019) sous Licence GPL V3.");
 	     //   System.exit(-1);
 	    }
